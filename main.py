@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from post import Post, validation
 import requests
 from db import session, users, Signup
-from werkzeug.security import check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
 
@@ -69,14 +69,15 @@ def sign_up():
         email = request.form['email']
 
         valid = validation(username=s_username, password=s_password)
-        
+        hashed_password = generate_password_hash(s_password)
         if valid == True:
-            new_user = Signup(username=s_username, password=s_password, email=email)
+            new_user = Signup(uname=s_username, passwd=hashed_password, email=email)
             session.add(new_user)
             session.commit()
-            return redirect(url_for("recieve_data"))
+            return redirect(url_for("receive_data"))
         else:
             error = "Validation failed"
+            session.rollback()
     
     return render_template("signup.html", error=error)
     
@@ -88,6 +89,7 @@ def receive_data():
     if request.method == "POST":
         username = request.form['username']
         password = request.form['password']
+
     
         valid = validation(username=username, password=password)
         
@@ -96,8 +98,11 @@ def receive_data():
             return render_template("login.html", warning=error)
         
         #checking login details in database
-        user = session.query(users).filter_by(uname=username).all()
-        if user != True:
+        session.rollback() # --> used to solve query previous problem to ensure no error
+        
+        user = session.query(Signup).filter_by(uname=username).all()
+        print(user)
+        if not user:
             error = "login details not found"
             return render_template("login.html", warning=error)
         
