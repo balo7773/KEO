@@ -13,7 +13,7 @@
     <div class="content">
         <div class="card">
             <h1> {{ blog.title }}</h1>
-            <h2> {{blog.content}}</h2>
+            <h2> {{ blog.content | truncate(199, True) | safe }}</h2>
             <a href="{{blog.url}}" style="font-size: 12px;">READ MORE...</a>
             <p style="font-size: 10px;"> {{ blog.publishedAt }}</p>
         </div>
@@ -21,6 +21,6 @@
 </div>
 </body>
 <footer>
-    <p>Made with ♥️ in London.</p>
+    <p>&copy; 2024 KEO News. All rights reserved.</p>
 </footer>
 </html>

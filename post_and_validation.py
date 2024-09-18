@@ -1,3 +1,12 @@
+from flask_login import LoginManager
+from db import session, Signup
+
+login_manager = LoginManager()
+
+@login_manager.user_loader
+def load_user(user_id):
+    return session.query(Signup).get(int(user_id))
+
 class Post:
     postId = 0
     def __init__(self, author, title, description, image, publishedAt, content, url, id=None):
@@ -19,7 +28,6 @@ class Post:
 
 #function for password validation.
 # --> remember to make sure you raise your custom errors
-
 def validation(username, password):
     lowercase = [chr(i) for i in range(97, 123)]
     uppercase = [chr(j) for j in range(65, 91)]

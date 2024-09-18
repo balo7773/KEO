@@ -1,13 +1,14 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
+from flask_login import UserMixin
 
 engine = create_engine('mysql+mysqlconnector://blog73:blog147773@172.22.54.54/blogdb')
 
 Base = declarative_base()
 
 #class users with table user
-class users(Base):
+class users(Base, UserMixin):
     __tablename__ = 'user'
     
     signup_id = Column(Integer, ForeignKey('registration.id'))
@@ -17,11 +18,12 @@ class users(Base):
     
     signup = relationship("Signup", back_populates="user")
 
-    def repr(Signup):
-        return f"user is {users.uname} , email is {users.email}"
+    def __repr__(self):
+        return f"user is {self.uname}, email is {self.signup.email}"
 
+    
 #class signup with registration table
-class Signup(Base):
+class Signup(Base, UserMixin):
     __tablename__ = 'registration'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -31,8 +33,11 @@ class Signup(Base):
     
     user = relationship("users", back_populates="signup", uselist=False)
     
-    def repr(Signup):
-        return f"user is {Signup.uname} , email is {Signup.email}"
+    def repr(self):
+        return f"user is {self.uname} , email is {self.email}"
+
+    def get_id(self):
+        return str(self.id)  # Flask-Login expects this to return a string
 
 Base.metadata.create_all(engine)  # Creates all tables
 

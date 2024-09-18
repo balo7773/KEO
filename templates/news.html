@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="top">
+        <div class="title"><h1>My Blog</h1></div>
+    </div>
+    <div class="content">
+        <div class="card">
+            <h1> {{ blog_2.title }}</h1>
+            <h2> {{blog_2.content | safe}}</h2>
+            <p style="font-size: 10px;"> {{ blog_2.publishedAt }}</p>
+        </div>
+    </div>
+</div>
+</body>
+<footer>
+    <p>&copy; 2024 KEO News. All rights reserved.</p>
+</footer>
+</html>
