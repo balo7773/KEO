@@ -1,0 +1,240 @@
+    body {
+    background-image: linear-gradient(rgba(7, 53, 170, 0.756), rgba(5, 92, 135, 0.5)), url('../KEO_news.jpeg');
+    background-size: cover;
+    background-position: center;
+  }
+    footer {
+    background-color: #43658b;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  /* Navbar styling */
+  .navbar {
+    background-color: #fff; 
+    padding: 5px 15px; 
+    width: 100%;
+    max-height: none; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .navbar-brand {
+    padding: 0; 
+    margin: 0; 
+  }
+  
+  /* KEO logo styling */
+  .keo-logo-box {
+    background-color: #1a1d23; 
+    padding: 3px 6px; 
+    border-radius: 3px; 
+    margin: 0; 
+  }
+  
+  .keo-logo {
+    color: #fff; 
+    font-size: 18px; 
+    font-weight: bold;
+  }
+  
+  /* Added media queries for responsiveness */
+  
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 10px;
+    }
+    .keo-logo-box {
+      padding: 5px;
+    }
+    .keo-logo {
+      font-size: 16px;
+    }
+    .navbar-nav .nav-link {
+      margin-right: 10px;
+      font-size: 12px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .navbar {
+      padding: 5px;
+    }
+    .keo-logo-box {
+      padding: 3px;
+    }
+    .keo-logo {
+      font-size: 14px;
+    }
+    .navbar-nav .nav-link {
+      margin-right: 5px;
+      font-size: 10px;
+    }
+  }
+  
+  /* Adjust spacing between navbar items */
+  .navbar-nav .nav-link {
+    margin-right: 15px; 
+    font-size: 12px; 
+    color: rgb(14, 101, 182);
+  }
+  
+  /* Ensure Sign In and Login are at the extreme right */
+  .navbar-nav.ms-auto {
+    margin-left: auto; 
+  }
+  
+  /* Added to ensure signin and signout links don't extend beyond the screen */
+  .navbar-nav.ms-auto .nav-link {
+    margin-left: 5px; /* Reduced margin to prevent extending */
+  }
+  
+  form.d-flex .form-control {
+    height: 30px;
+    width: 150px; 
+    padding: 0 10px; 
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  
+  form.d-flex .btn {
+    background-color: #337ab7;
+    height: 30px; 
+    padding: 0 20px; 
+    font-size: 14px;
+  }
+
+  .navbar-nav .nav-link:active {
+    background-color: #337ab7; /* Blue color */
+    color: #fff;
+  }
+  
+  /* Hover effects */
+  .navbar-nav .nav-link:hover {
+    color: #0b6f9a;
+  }
+  
+  /* Dropdown menu styling */
+  .dropdown-menu {
+    background-color: #f8f9fa;
+    color: #212529;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 3px 10px;
+    }
+    .keo-logo-box {
+      padding: 2px 4px;
+    }
+    .navbar-nav .nav-link {
+      padding: 3px 6px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .navbar {
+      padding: 2px 5px;
+    }
+    .keo-logo-box {
+      padding: 1px 2px;
+    }
+    .navbar-nav .nav-link {
+      padding: 2px 4px;
+    }
+  }
+  /*nav ticker tape */
+  #ticker-tape {
+    transition: margin-top 0.5s ease;
+    margin-top: 1px; /* Adjust value to your liking */
+  }
+  
+  /*index*/
+  .wrapper {
+    position: relative;
+    clear: both;
+    margin: 0 auto 75px auto;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .top {
+    background: #4e89ae;
+    height: 180px;
+    border-top: 20px solid #43658b;
+  }
+  
+  .top .title {
+    width: 700px;
+    margin: 38px auto 0 auto;
+  }
+  
+  .title h1 {
+    font-size: 24px;
+    color: #FFF;
+    font-weight: 500;
+  }
+  
+  .content {
+    margin: -80px auto 100px;
+    padding-bottom: 20px;
+  }
+  
+  .card {
+    position: relative;
+    background: #fff;
+    padding: 50px;
+    width: 600px;
+    margin: 120px auto 0 auto;
+    box-shadow: 0 2px 4px rgba(100, 100, 100, 0.1);
+  }
+  
+  .card h2 {
+    font-size: 21px;
+    font-weight: 500;
+  }
+  
+  .card h2 a {
+    color: #CC0000;
+    text-decoration: none;
+  }
+  
+  .card .text {
+    color: #212121;
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 22px;
+  }
+  
+  .card h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .card p em {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .card p {
+    font-size: 18px;
+    line-height: 25px;
+    color: #444;
+  }
+  
+  .card {
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    box-shadow: 0 4px 8px rgba(100, 100, 100, 0.2);
+  }
+  
+  .card img {
+    border-radius: 10px;
+  }
+  
+  .card h2 {
+    margin-top: 0;
+  }
+  /*index end*/

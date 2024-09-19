@@ -14,8 +14,8 @@
   <nav class="navbar navbar-expand-lg navbar-light navbar-custom sticky-top">
     <div class="container-fluid">
       <!-- KEO logo section with its own box background -->
-      <a class="navbar-brand keo-logo-box" href="#">
-        <span class="keo-logo">KEO</span>
+      <a class="navbar-brand keo-logo-box" href="{{ url_for('home') }}">
+        <span class="keo-logo" class="img-fluid">KEO</span>
       </a>
       
       <!-- Toggle button for mobile view -->
@@ -27,23 +27,23 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto me-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="{{ url_for('home') }}">Home</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="newsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               News
             </a>
             <ul class="dropdown-menu" aria-labelledby="newsDropdown">
-              <li><a class="dropdown-item" href="#">Financial Market</a></li>
-              <li><a class="dropdown-item" href="#">Global Trends</a></li>
-              <li><a class="dropdown-item" href="#">Economy</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('get_all_posts', keyword='Financial Market') }}">Financial Market</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('get_all_posts', keyword='Global') }}">Global Trends</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('get_all_posts', keyword='Economy') }}">Economy</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Crypto</a>
+            <a class="nav-link" href="{{ url_for('get_all_posts', keyword='Crypto') }}">Crypto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="{{ url_for('about') }}">About</a>
           </li>
         </ul>
         
@@ -75,7 +75,105 @@
       </ul>
       </div>
     </div>
-  </nav>  
+  </nav>
+  <nav id="ticker-tape">
+    <!-- TradingView Widget BEGIN -->
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+      <script
+        type="text/javascript"
+        src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+        async
+      >
+        {
+          "symbols": [
+          {
+            "description": "",
+            "proName": "NASDAQ:TSLA"
+          },
+          {
+            "description": "",
+            "proName": "NASDAQ:AAPL"
+          },
+          {
+            "description": "",
+            "proName": "NASDAQ:NVDA"
+          },
+          {
+            "description": "",
+            "proName": "NASDAQ:MSFT"
+          },
+          {
+            "description": "",
+            "proName": "NASDAQ:AMZN"
+          },
+          {
+            "description": "",
+            "proName": "NASDAQ:GOOGL"
+          },
+          {
+            "description": "",
+            "proName": "NASDAQ:META"
+          },
+          {
+            "description": "",
+            "proName": "NYSE:BRK.B"
+          },
+          {
+            "description": "",
+            "proName": "NYSE:LLY"
+          },
+          {
+            "description": "",
+            "proName": "NYSE:UNH"
+          },
+          {
+            "description": "",
+            "proName": "NYSE:V"
+          },
+          {
+            "description": "",
+            "proName": "NYSE:WMT"
+          },
+          {
+            "description": "",
+            "proName": "NSENG:ACCESSCORP"
+          },
+          {
+              "description": "",
+              "proName": "NSENG:FBNH"
+          },
+          {
+              "description": "",
+              "proName": "NSENG:UBA"
+          },
+          {
+              "description": "",
+              "proName": "NSENG:TRANSCORP"
+          },
+          {
+              "description": "",
+              "proName": "NSENG:JBERGER"
+          },
+          {
+              "description": "",
+              "proName": "NSENG:OANDO"
+          },
+          {
+              "description": "",
+              "proName": "NSENG:CONOIL"
+          }
+          ],
+          "showSymbolLogo": true,
+          "colorTheme": "light",
+          "isTransparent": false,
+          "displayMode": "adaptive",
+          "locale": "en"
+        }
+      </script>
+      <!-- TradingView Widget END -->
+    </div>
+  </nav>
   
   <div class="banner">
     <h1>KEO News</h1>

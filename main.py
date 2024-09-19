@@ -35,7 +35,6 @@ if response_2.status_code == 200:
 post_data_2 = response_2.json()
 
 article_2 = post_data_2.get('content', [])
-
 store_post_2 = []
 
 for post_2 in article_2:
@@ -51,20 +50,18 @@ for post_2 in article_2:
     store_post_2.append(init_post_2)
 
 print(store_post_2)
-response = requests.get(f"https://newsapi.org/v2/everything?q=economy&from={three_days_bfor_cd}&to={current_date}&sortBy=popularity&pageSize=17&apiKey=7bce52cd1385491385d8146e1f2caaea")
-if response.status_code == 200:
-    print("pass")
 
-    
-posts_data = response.json()
-
-#get article list for each post
-article = posts_data.get('articles', [])
 
 store_post = []
-
-for posts in article:
-    init_post = Post(
+def get_post(keyname):
+    response = requests.get(f"https://newsapi.org/v2/everything?q={keyname}&sortBy=popularity&pageSize=17&apiKey=7bce52cd1385491385d8146e1f2caaea")
+    if response.status_code == 200:
+        print("pass")
+    posts_data = response.json()
+    #get article list for each post
+    article = posts_data.get('articles', [])
+    for posts in article:
+        init_post = Post(
                     author=posts['author'],
                     title=posts['title'],
                     description=posts['description'],
@@ -73,36 +70,50 @@ for posts in article:
                     content=posts['content'][0:],
                     url=posts['url']
                 )
-    store_post.append(init_post) #each post is indexed in this list
+        store_post.append(init_post) #each post is indexed in this list
+        
+    print(store_post)
+    return store_post
+
+search_post = []
 
 @app.route('/')
 def home():
     return render_template("home.html", posting_2=store_post_2)
 
-@app.route('/get_post', methods=['GET'])
-def get_all_posts():
-    
-    is_next = request.args.get('next')  # Check if the next button is clicked
-    is_prev = request.args.get('prev')  # Check if the previous button is clicked
-    page_number = 1
-    page_size = 5
-    total_pages = len(store_post)
+@app.route('/get_post/<keyword>', methods=['GET'])
+def get_all_posts(keyword):
+    post = get_post(keyword)
+        
+    page_number = int(request.args.get('page_number', 1))
+    page_size = 5  # Number of posts per page
+    total_pages = len(store_post) // page_size + (1 if len(store_post) % page_size > 0 else 0)  # Total pages
+
+    # Calculate the start and end indices for pagination
     start = (page_number - 1) * page_size
     end = start + page_size
-    # Handle pagination logic for "Next" and "Previous" buttons
-    if is_next == 'true':
-        page_number += 1
-        start = (page_number - 1) * page_size
-        end = start + page_size
-    elif is_prev == 'true':
-        page_number -= 1
-        start = (page_number - 1) * page_size
-        end = start + page_size
-        # Ensure we don't exceed the number of results
-    if end > total_pages:
-        end = total_pages
+    if end > len(store_post):
+        end = len(store_post)
 
-    return render_template("index.html", route_name='get_all_posts', posting=store_post[start:end], _end=end, _total_pages=total_pages, _page_number=page_number)
+    # Handle "Next" and "Previous" button logic
+    is_next = request.args.get('next')
+    is_prev = request.args.get('prev')
+    
+    # If "Next" is clicked, increase page number
+    if is_next == 'true' and page_number < total_pages:
+        page_number += 1
+    # If "Previous" is clicked, decrease page number
+    elif is_prev == 'true' and page_number > 1:
+        page_number -= 1
+
+    # Recalculate start and end after changing page number
+    start = (page_number - 1) * page_size
+    end = start + page_size
+    if end > len(store_post):
+        end = len(store_post)
+
+    return render_template("index.html", route_name='get_all_posts', keyword=keyword, posting=post[start:end], _end=end, _total_pages=total_pages, _page_number=page_number)
+    
 
 #read latest news
 @app.route("/latest-news/<int:index>")
@@ -117,10 +128,13 @@ def news(index):
 @app.route("/search", methods=['GET'])
 def search():
     search_keyword = request.args.get('query')
+    if search_keyword == None:
+        return redirect(url_for('home'))
     is_next = request.args.get('next')  # Check if the next button is clicked
     is_prev = request.args.get('prev')  # Check if the previous button is clicked
     page_number = 1
     page_size = 5
+    global search_post
     search_post = []
     search_response = requests.get(f"https://newsapi.org/v2/everything?q={search_keyword}&from={three_days_bfor_cd}&to={current_date}&sortBy=popularity&pageSize=17&apiKey=7bce52cd1385491385d8146e1f2caaea")
     
@@ -169,6 +183,7 @@ def search():
 #for post
 @app.route("/post/<int:index>")
 def show_post(index):
+    global search_post, store_post, store_post_2
     requested_post = None
     for post in store_post:
         if post.id == index:
@@ -184,13 +199,13 @@ def show_post(index):
         else:
             continue
 
-    '''for post in search_post:
+    for post in search_post:
         if post.id == index:
             requested_post = post
             break
         else:
             continue
-    return render_template("post.html", blog=requested_post) '''
+    return render_template("post.html", blog=requested_post)
 
 
 #for signup
@@ -259,6 +274,10 @@ def login():
     
     return render_template("login.html")
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 @login_required
 @app.route("/logout")
 def logout():
@@ -269,6 +288,7 @@ def logout():
 
 if __name__ == "__main__":
     # Clear lists to ensure fresh data on each run
+    Post.postId = 0
     app.run(debug=True)
 
 

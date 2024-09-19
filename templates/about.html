@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - KEO News</title>
+    <link rel="stylesheet" href="../static/css/about.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ENjdO4Dr2bkBIFxQpeoA7G603L5r1eeUOBroC1B5ISm47bIF+z1kPBX0cv5RdHRK" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/css/style.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
 </head>
 <body>
@@ -74,8 +75,8 @@
           </ul>
           </div>
         </div>
-    </nav>
-    <nav id="ticker-tape">
+      </nav>
+      <nav id="ticker-tape">
         <!-- TradingView Widget BEGIN -->
         <div class="tradingview-widget-container">
           <div class="tradingview-widget-container__widget"></div>
@@ -172,19 +173,57 @@
           </script>
           <!-- TradingView Widget END -->
         </div>
-    </nav>
-    <div class="wrapper">
-       <div class="content">
-            <div class="card">
-                <h1> {{ blog_2.title }}</h1>
-                <h2> {{blog_2.content | safe}}</h2>
-            <p style="font-size: 10px;"> {{ blog_2.publishedAt }}</p>
+      </nav>
+    <div class="outer-box">
+        <div class="container">
+            <div class="intro">
+                <h1>Welcome to KEO</h1>
+                <p>Our mission is to make global, economic, and financial news accessible to all, empowering individuals to make informed decisions. With our intuitive platform, stay ahead of market trends and stay updated on the latest developments.</p>
+            </div>
+    
+            <hr class="separator">
+    
+            <div class="feature-box">
+                <div class="feature-content">
+                    <div class="image-left">
+                        <img src="../static/REAL_TIME_MARKET_TICKER.png" alt="Easy Navigation">
+                    </div>
+                    <div class="text-right">
+                        <h2>Easy Navigation with Real-Time Market Ticker</h2>
+                        <p>Navigate through our website with ease, with real-time market tickers always at your fingertips, ensuring you never miss a market movement.</p>
+                    </div>
+                </div>
+            </div>
+    
+            <hr class="separator">
+    
+            <div class="feature-box">
+                <div class="feature-content">
+                    <div class="text-left">
+                        <h2>Quality News</h2>
+                        <p>Trustworthy and insightful news from renowned sources, curated for your convenience.</p>
+                    </div>
+                    <div class="image-right">
+                        <img src="../static/QUALITY_NEWS.png" alt="Quality News">
+                    </div>
+                </div>
+            </div>
+    
+            <hr class="separator">
+    
+            <div class="feature-box">
+                <div class="feature-content">
+                    <div class="image-left">
+                        <img src="../static/LATEST_NEWS_ON_DECK.png" alt="Latest News Updates">
+                    </div>
+                    <div class="text-right">
+                        <h2>Latest News Updates</h2>
+                        <p>With KEO News, the moment you enter the site, you're greeted with the latest
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
-<footer>
-    <p>&copy; 2024 KEO News. All rights reserved.</p>
-</footer>
 </html>

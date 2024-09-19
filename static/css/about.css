@@ -1,0 +1,219 @@
+body {
+    background-image: linear-gradient(rgba(7, 53, 170, 0.756), rgba(5, 92, 135, 0.5)), url('../KEO_news.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Open Sans, sans-serif;
+  }
+  
+  .outer-box {
+    width: 90%; /* Adjust width of the overall box */
+    margin: 50px auto; /* Center the box and add space from the top */
+    padding: 20px;
+    background-color: #fff; /* White background for the box */
+    border: 5px solid #333; /* Border around the entire box */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Shadow around the box */
+  }
+  
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .intro {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .feature-box {
+    margin-bottom: 20px;
+  }
+  
+  .feature-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .image-left, .image-right {
+    width: 45%;
+    margin: 10px;
+    border: 5px solid #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Hover effect for the images */
+  .image-left:hover, .image-right:hover {
+    transform: scale(1.05);
+  }
+  
+  .text-left, .text-right {
+    width: 45%;
+    margin: 10px;
+    font-size: 16px;
+  }
+  
+  .separator {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+    padding: 0 20px;
+  }
+  
+  h1, h2 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .navbar {
+    background-color: #fff; 
+    padding: 5px 15px; 
+    width: 100%;
+    max-height: none; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .navbar-brand {
+    padding: 0; 
+    margin: 0; 
+  }
+  
+  /* KEO logo styling */
+  .keo-logo-box {
+    background-color: #1a1d23; 
+    padding: 3px 6px; 
+    border-radius: 3px; 
+    margin: 0; 
+  }
+  
+  .keo-logo {
+    color: #fff; 
+    font-size: 18px; 
+    font-weight: bold;
+  }
+  
+  /* Added media queries for responsiveness */
+  
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 10px;
+    }
+    .keo-logo-box {
+      padding: 5px;
+    }
+    .keo-logo {
+      font-size: 16px;
+    }
+    .navbar-nav .nav-link {
+      margin-right: 10px;
+      font-size: 12px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .navbar {
+      padding: 5px;
+    }
+    .keo-logo-box {
+      padding: 3px;
+    }
+    .keo-logo {
+      font-size: 14px;
+    }
+    .navbar-nav .nav-link {
+      margin-right: 5px;
+      font-size: 10px;
+    }
+  }
+  
+  /* Adjust spacing between navbar items */
+  .navbar-nav .nav-link {
+    margin-right: 15px; 
+    font-size: 12px; 
+    color: rgb(14, 101, 182);
+  }
+  
+  .navbar-nav .nav-link:active {
+    background-color: #337ab7; /* Blue color */
+    color: #fff;
+  }
+  /* Ensure Sign In and Login are at the extreme right */
+  .navbar-nav.ms-auto {
+    margin-left: auto; 
+  }
+  
+  /* Added to ensure signin and signout links don't extend beyond the screen */
+  .navbar-nav.ms-auto .nav-link {
+    margin-left: 5px; /* Reduced margin to prevent extending */
+  }
+  
+  form.d-flex .form-control {
+    height: 30px;
+    width: 150px; 
+    padding: 0 10px; 
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  
+  form.d-flex .btn {
+    background-color: #337ab7;
+    height: 30px; 
+    padding: 0 20px; 
+    font-size: 14px;
+  }
+  
+  /* Hover effects */
+  .navbar-nav .nav-link:hover {
+    color: #0b6f9a;
+  }
+  
+  /* Dropdown menu styling */
+  .dropdown-menu {
+    background-color: #f8f9fa;
+    color: #212529;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 3px 10px;
+    }
+    .keo-logo-box {
+      padding: 2px 4px;
+    }
+    .navbar-nav .nav-link {
+      padding: 3px 6px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .navbar {
+      padding: 2px 5px;
+    }
+    .keo-logo-box {
+      padding: 1px 2px;
+    }
+    .navbar-nav .nav-link {
+      padding: 2px 4px;
+    }
+  }
+  /*nav ticker tape */
+  #ticker-tape {
+    transition: margin-top 0.5s ease;
+    margin-top: 1px; /* Adjust value to your liking */
+  }
+  

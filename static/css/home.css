@@ -1,5 +1,5 @@
 body {
-  background: #efeff3;
+  background: linear-gradient(to bottom, rgba(248, 249, 252, 0.942), rgba(222, 227, 237, 0.778));
   font-family: 'Raleway', sans-serif;
   color: #212121;
 }
@@ -221,38 +221,82 @@ hr {
 }
 
 /* Navbar styling */
+/* Navbar styling */
 .navbar {
-  background-color: rgba(0, 168, 246, 0.221); /* Transparent background */
-  padding: 3px 10px; /* Reduced padding to decrease height */
+  background-color: #fff; 
+  padding: 5px 15px; 
   width: 100%;
-  max-height: 40px; /* Reduced height for a more compact look */
+  max-height: none; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.navbar-brand {
+  padding: 0; 
+  margin: 0; 
 }
 
 /* KEO logo styling */
 .keo-logo-box {
-  background-color: black; /* Black background for the box */
-  padding: 0px 3px; /* Reduced padding to fit the compact navbar */
-  border-radius: 3px; /* Rounded corners for the box */
-  margin: 4px -95px 4px -6px; /* Added margin to create space around logo */
-  font-size: 12px; /* Reduced font size to fit the compact navbar */
+  background-color: #1a1d23; 
+  padding: 3px 6px; 
+  border-radius: 3px; 
+  margin: 0; 
 }
 
 .keo-logo {
-  color: white;            /* White text for the KEO logo */
-  font-size: 24px;         /* Adjust font size */
+  color: #fff; 
+  font-size: 18px; 
   font-weight: bold;
+}
+
+/* Added media queries for responsiveness */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px;
+  }
+  .keo-logo-box {
+    padding: 5px;
+  }
+  .keo-logo {
+    font-size: 16px;
+  }
+  .navbar-nav .nav-link {
+    margin-right: 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    padding: 5px;
+  }
+  .keo-logo-box {
+    padding: 3px;
+  }
+  .keo-logo {
+    font-size: 14px;
+  }
+  .navbar-nav .nav-link {
+    margin-right: 5px;
+    font-size: 10px;
+  }
 }
 
 /* Adjust spacing between navbar items */
 .navbar-nav .nav-link {
-  margin-right: 15px; /* Kept the same spacing between Home and Search bar */
-  font-size: 12px; /* Reduced font size to fit the compact navbar */
-  color: white;
+  margin-right: 15px; 
+  font-size: 12px; 
+  color: rgb(14, 101, 182);
 }
 
+.navbar-nav .nav-link:active {
+  background-color: #337ab7; /* Blue color */
+  color: #fff;
+}
 /* Ensure Sign In and Login are at the extreme right */
 .navbar-nav.ms-auto {
-  margin-left: auto; /* Changed from margin-right to margin-left */
+  margin-left: auto; 
 }
 
 /* Added to ensure signin and signout links don't extend beyond the screen */
@@ -262,25 +306,55 @@ hr {
 
 form.d-flex .form-control {
   height: 30px;
-  width: 150px; /* Decrease width */
-  padding: 0 10px; /* Increase padding to increase length */
+  width: 150px; 
+  padding: 0 10px; 
   font-size: 14px;
   margin-right: 10px;
 }
 
 form.d-flex .btn {
-  height: 30px; /* Decrease height */
-  padding: 0 20px; /* Increase width, adjust padding to fit new dimensions */
+  background-color: #337ab7;
+  height: 30px; 
+  padding: 0 20px; 
   font-size: 14px;
 }
 
 /* Hover effects */
-.nav-link:hover {
-  color: #dcdcdc;
+.navbar-nav .nav-link:hover {
+  color: #0b6f9a;
 }
 
 /* Dropdown menu styling */
 .dropdown-menu {
   background-color: #f8f9fa;
   color: #212529;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 3px 10px;
+  }
+  .keo-logo-box {
+    padding: 2px 4px;
+  }
+  .navbar-nav .nav-link {
+    padding: 3px 6px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    padding: 2px 5px;
+  }
+  .keo-logo-box {
+    padding: 1px 2px;
+  }
+  .navbar-nav .nav-link {
+    padding: 2px 4px;
+  }
+}
+/*nav ticker tape */
+#ticker-tape {
+  transition: margin-top 0.5s ease;
+  margin-top: 1px; /* Adjust value to your liking */
 }
