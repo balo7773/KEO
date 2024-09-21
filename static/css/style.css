@@ -1,5 +1,5 @@
     body {
-    background-image: linear-gradient(rgba(7, 53, 170, 0.756), rgba(5, 92, 135, 0.5)), url('../KEO_news.jpeg');
+    background-image: linear-gradient(rgba(7, 53, 170, 0.756), rgba(19, 123, 175, 0.5)), url('../KEO_news.jpeg');
     background-size: cover;
     background-position: center;
   }
@@ -238,3 +238,4 @@
     margin-top: 0;
   }
   /*index end*/
+

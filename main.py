@@ -128,7 +128,7 @@ def news(index):
 @app.route("/search", methods=['GET'])
 def search():
     search_keyword = request.args.get('query')
-    if search_keyword == None:
+    if search_keyword == None or search_keyword.strip() == "":
         return redirect(url_for('home'))
     is_next = request.args.get('next')  # Check if the next button is clicked
     is_prev = request.args.get('prev')  # Check if the previous button is clicked
