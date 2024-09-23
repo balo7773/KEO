@@ -1,31 +1,35 @@
+#!/usr/bin/python3
 from flask import Flask, render_template, request, redirect, url_for, flash, session
-from post_and_validation import Post, login_manager, load_user, validation
+from .post_and_validation import Post, login_manager, validation
 import requests
-from db import session as db_session, Signup
+import urllib.parse
+from .db import session as db_session, Signup
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import date, timedelta
-from flask_login import login_user, logout_user, login_required, current_user
+from flask_login import login_user, logout_user, login_required
 import os
+from .config import Config
 
 app = Flask(__name__)
 
 login_manager.login_view = "login"
 login_manager.init_app(app)
 app.secret_key = os.urandom(24)
-#API url endoints
-#url = " https://newsapi.org/v2/top-headlines"
-#url_1 = "https://newsapi.org/v2/everything"
 
-#parameters for the url
-#qury = "q=world%20economy&sortBy=relevancy&pageSize=3&apiKey=7bce52cd1385491385d8146e1f2caaea"
 
+# Clear lists to ensure fresh data on each run
+Post.postId = 0
 
 #for date
 current_date = date.today().isoformat()
 three_days_bfor_cd = (date.today() - timedelta(days=3)).isoformat()
 
+#api keys
+api_key_1 = Config.API_KEY_1
+api_key_2 = Config.API_KEY_2
+
 #Getting response from API and initializing them
-response_2 = requests.get("https://financialmodelingprep.com/api/v3/fmp/articles?page=5&size=12&apikey=l0PIZQxrsDN5gjx2CvDaIwShIlCf9UwL")
+response_2 = requests.get(f"https://financialmodelingprep.com/api/v3/fmp/articles?page=5&size=12&apikey={api_key_1}")
 
 
 if response_2.status_code == 200:
@@ -54,20 +58,23 @@ print(store_post_2)
 
 store_post = []
 def get_post(keyname):
-    response = requests.get(f"https://newsapi.org/v2/everything?q={keyname}&sortBy=popularity&pageSize=17&apiKey=7bce52cd1385491385d8146e1f2caaea")
+    keyname = urllib.parse.quote(keyname)
+    response = requests.get(f"https://api.thenewsapi.com/v1/news/top?search={keyname}&api_token={api_key_2}&limit=3&published_after={three_days_bfor_cd}")
     if response.status_code == 200:
-        print("pass")
+        print("pass1")
+    else:
+        print("failed")
     posts_data = response.json()
     #get article list for each post
-    article = posts_data.get('articles', [])
+    article = posts_data.get('data', [])
     for posts in article:
         init_post = Post(
-                    author=posts['author'],
+                    author=posts['source'],
                     title=posts['title'],
                     description=posts['description'],
-                    image=posts['urlToImage'],
-                    publishedAt=posts['publishedAt'],
-                    content=posts['content'][0:],
+                    image=posts.get('image_url',''),
+                    publishedAt=posts['published_at'],
+                    content=posts['snippet'][0:],
                     url=posts['url']
                 )
         store_post.append(init_post) #each post is indexed in this list
@@ -135,13 +142,14 @@ def search():
     page_number = 1
     page_size = 5
     global search_post
+    search_keyword = urllib.parse.quote(search_keyword)
     search_post = []
-    search_response = requests.get(f"https://newsapi.org/v2/everything?q={search_keyword}&from={three_days_bfor_cd}&to={current_date}&sortBy=popularity&pageSize=17&apiKey=7bce52cd1385491385d8146e1f2caaea")
+    search_response = requests.get(f"https://api.thenewsapi.com/v1/news/top?search={search_keyword}&api_token={api_key_2}&limit=3&published_after={three_days_bfor_cd}")
     
     if search_response.status_code == 200:
         print("pass search")
         search_post_data = search_response.json()
-        search_news = search_post_data.get('articles', [])
+        search_news = search_post_data.get('data', [])
         # check for article
         if not search_news:
             return render_template("index.html", posting=[], _end=0, _total_pages=0)
@@ -149,12 +157,12 @@ def search():
         #for search post       
         for news in search_news:
             search_init = Post(
-                    author=news['author'],
+                    author=news['source'],
                     title=news['title'],
                     description=news['description'],
-                    image=news['urlToImage'],
-                    publishedAt=news['publishedAt'],
-                    content=news['content'][0:],
+                    image=news.get('image_url',''),
+                    publishedAt=news['published_at'],
+                    content=news['snippet'][0:],
                     url=news['url']
             )
             search_post.append(search_init)
@@ -287,8 +295,6 @@ def logout():
 
 
 if __name__ == "__main__":
-    # Clear lists to ensure fresh data on each run
-    Post.postId = 0
-    app.run(debug=True)
+    app.run()
 
 
