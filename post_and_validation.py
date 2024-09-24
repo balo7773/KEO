@@ -1,5 +1,6 @@
+#!/usr/bin/python3
 from flask_login import LoginManager
-from db import session, Signup
+from .db import session, Signup
 
 login_manager = LoginManager()
 

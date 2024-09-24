@@ -1,9 +1,11 @@
+#!/usr/bin/python3
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from flask_login import UserMixin
+from .config import Config
 
-engine = create_engine('mysql+mysqlconnector://blog73:blog147773@172.22.54.54/blogdb')
+engine = create_engine(Config.SQL_ALCHEMY_URI)
 
 Base = declarative_base()
 
