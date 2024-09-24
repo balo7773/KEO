@@ -1,46 +1,55 @@
-# FINANCIAL NEWS BLOG -> ALx Portfolio project
-## Description
-- This project aims to help people to have easy access to quality news around the world such as:
-    1. financial news,
-    2. global trends,
-    3. and economy news.
+# FINANCIAL NEWS BLOG -> ALX Portfolio Project
 
-## Table of content
+## Description
+This project aims to provide easy access to high-quality news from around the world, including:
+   1. **Financial news**
+   2. **Global trends**
+   3. **Economic news**
+
+## Table of Content
 - [Description](#description)
 - [Installation](#installation)
-- [usage](#usage)
+- [Usage](#usage)
 - [Features](#features)
 - [License](#license)
 - [Contact](#contact)
 
 ## Installation
-1. Clone the repository `git clone https://github.com/balo7773/KEO.git`
-2. make sure you have your **venv** (virtual environment) activated in the directory you cloned the repo,
-    if not follow the instructions below:
-  -  for window users run the command
-    - **if using command prompt**
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/balo7773/KEO.git
     ```
-        venv\Scripts\activate
-    ```
-    - **if using powershell**
-    ```
-        venv\Scripts\Activate.ps1
-    ```
-  -  for mac and Linux OS users
-    - **in your shell terminal**
-    ```
-        source venv/bin/activate
-    ```
-    - **to deactivate for all users**
-    ```
-        deactivate
-    ```
-***NOTE: WHEN RUNNING THIS COMMANDS MAKE SURE YOU ARE IN THE DIRECTORY WHERE YOU CLONED THE REPO ***
 
-3. After that make sure you download the packages from `requirements.txt` using the command:
-```
-    pip install -r requirements.txt
-```
+2. Ensure your **virtual environment (venv)** is activated in the directory where you cloned the repo.  
+   If not, follow the instructions below to activate it:
+
+   - **For Windows users**:
+     - **Command Prompt**:
+       ```bash
+       venv\Scripts\activate
+       ```
+     - **Powershell**:
+       ```bash
+       venv\Scripts\Activate.ps1
+       ```
+
+   - **For macOS and Linux users**:
+     ```bash
+     source venv/bin/activate
+     ```
+
+   - **To deactivate the virtual environment for all users**:
+     ```bash
+     deactivate
+     ```
+
+   ***NOTE: WHEN RUNNING THESE COMMANDS, MAKE SURE YOU ARE IN THE DIRECTORY WHERE YOU CLONED THE REPO.***
+
+3. Install the required packages from `requirements.txt` using the following command:
+   ```bash
+   pip install -r requirements.txt
+
+
 ***NOTE: requirements.txt IS INCLUDED IN THE REPOSITORY. MAKE SURE YOU CLONE IT, AND ALL PACKAGES USED WERE UPDATED AS OF 23RD SEPTEMBER, 2024.***
 
 ## Usage
